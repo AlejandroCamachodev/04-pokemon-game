@@ -1,49 +1,49 @@
 <template>
-    
-    <div class="options-container">
-        
-        <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        </ul>
-        
-    </div>
+  <div class="options-container">
+    <ul>
+      <!-- selection es solo la referencia que usaremos en nuestro componente padre, asi: @selection -->
+      <li v-for="pokemon in pokemons" :key="pokemon.id" @click="$emit( 'selection', pokemon.id )" >{{ pokemon.name }}</li> 
+    </ul>
+  </div>
 </template>
 
 <script>
+export default {
+  props: {
+    pokemons: {
+      type: Array,
+      required: true,
+    },
+  },
+  hidden: {
+    type: Boolean,
+    default: false
 
-    export default {
-        
-    }
+  }
+};
 </script>
 
 <style scoped>
-    .options-container {
-        display: flex;
-        justify-content: center;
-    }
+.options-container {
+  display: flex;
+  justify-content: center;
+}
 
-    ul {
-        list-style-type: none;
-        margin: 20px 0 0 0;
-        padding: 0;
-    }
-    li {
-        background-color: white;
-        border-radius: 5px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        margin-bottom: 10px;
-        width: 250px;
-        
-    }
-    
-    li:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-    
-    
+ul {
+  list-style-type: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+}
+li {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 250px;
+}
 
+li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 </style>
